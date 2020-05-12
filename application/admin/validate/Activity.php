@@ -30,8 +30,8 @@ class Activity extends Validate
      * 验证场景
      */
     protected $scene = [
-        'add'  => [],
-        'edit' => [],
+        'add'  => ['admin_id', 'festival_id', 'title', 'start_at', 'end_at'],
+        'edit' => ['festival_id', 'title', 'start_at', 'end_at'],
     ];
 
 }

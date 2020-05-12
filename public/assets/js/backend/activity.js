@@ -25,8 +25,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     [
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
-                        {field: 'admin_id', title: __('Admin_id')},
-                        {field: 'festival_id', title: __('Festival_id')},
+                        {field: 'admin.username', title: __('Admin')},
+                        {field: 'festival.name', title: __('Festival')},
                         {field: 'title', title: __('Title')},
                         {field: 'is_set_blade', title: __('Is_set_blade'), formatter:function(value,row){
                                 if (row.is_set_blade === 1)

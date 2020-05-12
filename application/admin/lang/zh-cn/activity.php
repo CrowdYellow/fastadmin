@@ -3,6 +3,7 @@
 return [
     'Admin_id'     => '管理员ID',
     'Festival_id'  => '节日ID',
+    'Festival'     => '节日',
     'Title'        => '活动标题',
     'Is_set_blade' => '设置模板',
     'Is_set_prize' => '设置奖品',

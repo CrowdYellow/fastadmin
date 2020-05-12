@@ -26,12 +26,12 @@ class Activity extends Model
     # 模型关联 start
     public function admin()
     {
-        return $this->belongsTo(Admin::class, 'id', 'admin_id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo(Admin::class, 'admin_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 
     public function festival()
     {
-        return $this->belongsTo(Festival::class, 'id', 'festival_id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo(Festival::class, 'festival_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
     # 模型关联 end
 }

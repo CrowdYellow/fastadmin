@@ -27,6 +27,29 @@ class Activity extends Backend
         $this->assignconfig("admin", ['id' => $this->auth->id]);
     }
 
+    public function index()
+    {
+        if ($this->request->isAjax())
+        {
+            list($where, $sort, $order, $offset, $limit) = $this->buildparams();
+            $total = $this->model
+                ->where($where)
+                ->order($sort, $order)
+                ->count();
+
+            $list = $this->model
+                ->with(['admin', 'festival'])
+                ->where($where)
+                ->order($sort, $order)
+                ->limit($offset, $limit)
+                ->select();
+            $result = array("total" => $total, "rows" => $list);
+
+            return json($result);
+        }
+        return $this->view->fetch();
+    }
+
     public function add()
     {
         if ($this->request->isPost()) {

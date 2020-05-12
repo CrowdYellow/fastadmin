@@ -28,13 +28,28 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'admin_id', title: __('Admin_id')},
                         {field: 'festival_id', title: __('Festival_id')},
                         {field: 'title', title: __('Title')},
-                        {field: 'is_set_blade', title: __('Is_set_blade')},
-                        {field: 'is_set_prize', title: __('Is_set_prize')},
+                        {field: 'is_set_blade', title: __('Is_set_blade') ,formatter:function(value,row){
+                                if (row.is_set_blade === 1)
+                                {
+                                    return '<span style="color:green">已完成</span>';
+                                }else{
+                                    return '<span style="color:red">前往设置</span>';
+                                }
+                            }
+                        },
+                        {field: 'is_set_prize', title: __('Is_set_prize') ,formatter:function(value,row){
+                                if (row.is_set_prize === 1)
+                                {
+                                    return '<span style="color:green">已完成</span>';
+                                }else{
+                                    return '<span style="color:red">前往设置</span>';
+                                }
+                            }
+                        },
                         {field: 'start_at', title: __('Start_at')},
                         {field: 'end_at', title: __('End_at')},
-                        {field: 'status', title: __('Status')},
-                        {field: 'createtime', title: __('Createtime')},
-                        {field: 'updatetime', title: __('Updatetime')},
+                        {field: 'status', title: __('Status'), searchList: {"1": __('Yes'), "0": __('No')}, formatter: Table.api.formatter.toggle},
+                        {field: 'createtime', title: __('创建时间')},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]
                 ]

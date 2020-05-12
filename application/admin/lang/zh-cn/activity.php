@@ -7,5 +7,6 @@ return [
     'Is_set_blade' => '设置模板',
     'Is_set_prize' => '设置奖品',
     'Start_at'     => '开启时间',
-    'End_at'       => '结束时间'
+    'End_at'       => '结束时间',
+    'Status'       => '活动状态'
 ];

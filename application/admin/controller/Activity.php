@@ -30,6 +30,21 @@ class Activity extends Backend
      * 因此在当前控制器中可不用编写增删改查的代码,除非需要自己控制这部分逻辑
      * 需要将application/admin/library/traits/Backend.php中对应的方法复制到当前控制器,然后进行修改
      */
-    
+
+    public function add()
+    {
+        if ($this->request->isPost()) {
+            $this->token();
+            $params = $this->request->post("row/a");
+            $admin              = \think\Session::get('admin');
+            $params['admin_id'] = $admin['id'];
+            $result = $this->model->validate('Activity.add')->save($params);
+            if ($result === false) {
+                $this->error($this->model->getError());
+            }
+            $this->success();
+        }
+        return $this->view->fetch();
+    }
 
 }

@@ -32,6 +32,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'is_set_prize', title: __('Is_set_prize')},
                         {field: 'start_at', title: __('Start_at')},
                         {field: 'end_at', title: __('End_at')},
+                        {field: 'status', title: __('Status')},
                         {field: 'createtime', title: __('Createtime')},
                         {field: 'updatetime', title: __('Updatetime')},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}

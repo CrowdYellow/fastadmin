@@ -5,7 +5,7 @@ namespace app\admin\controller;
 use app\common\controller\Backend;
 
 /**
- * 
+ *
  *
  * @icon fa fa-circle-o
  */
@@ -13,7 +13,7 @@ class Activity extends Backend
 {
 
     protected $relationSearch = true;
-    
+
     /**
      * Activity模型对象
      * @var \app\admin\model\Activity
@@ -24,6 +24,7 @@ class Activity extends Backend
     {
         parent::_initialize();
         $this->model = new \app\admin\model\Activity;
+        $this->assignconfig("admin", ['id' => $this->auth->id]);
     }
 
     public function add()

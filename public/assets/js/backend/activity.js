@@ -32,8 +32,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 if (row.is_set_blade === 1)
                                 {
                                     return '<span style="color:green">已完成</span>';
-                                }else{
+                                }else if (row.admin_id == Config.admin.id){
                                     return '<span style="color:red">前往设置</span>';
+                                } else {
+                                    return '<span style="color:red">未完成</span>';
                                 }
                             }
                         },
@@ -41,8 +43,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 if (row.is_set_prize === 1)
                                 {
                                     return '<span style="color:green">已完成</span>';
-                                }else{
+                                }else if (row.admin_id == Config.admin.id){
                                     return '<span style="color:red">前往设置</span>';
+                                } else {
+                                    return '<span style="color:red">未完成</span>';
                                 }
                             }
                         },

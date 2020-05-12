@@ -67,6 +67,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                             title: __('Operate'),
                             table: table,
                             events: Table.api.events.operate,
+                            buttons: [
+                                {
+                                    name: 'prize',
+                                    text: '设置奖品',
+                                    title: '设置奖品',
+                                    classname: 'btn btn-xs btn-primary btn-dialog',
+                                    url: '/EayIOJxtvB.php/activity/setprize'
+                                }
+                            ],
                             formatter: function(value, row, index) {
                                 var that = $.extend({}, this);
                                 var table = $(that.table).clone(true);
@@ -74,6 +83,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 if (row.admin_id !== Config.admin.id) {
                                     $(table).data("operate-del", null);
                                     $(table).data("operate-edit", null);
+                                    $(table).data("operate-prize", null);
                                 }
                                 that.table = table;
                                 return Table.api.formatter.operate.call(that, value, row, index);
@@ -90,6 +100,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Controller.api.bindevent();
         },
         edit: function () {
+            Controller.api.bindevent();
+        },
+        setprize: function () {
             Controller.api.bindevent();
         },
         api: {

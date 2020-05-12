@@ -29,21 +29,20 @@ class Activity extends Backend
 
     public function index()
     {
-        if ($this->request->isAjax())
-        {
+        if ($this->request->isAjax()) {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $total = $this->model
                 ->where($where)
                 ->order($sort, $order)
                 ->count();
 
-            $list = $this->model
+            $list   = $this->model
                 ->with(['admin', 'festival'])
                 ->where($where)
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();
-            $result = array("total" => $total, "rows" => $list);
+            $result = ["total" => $total, "rows" => $list];
 
             return json($result);
         }
@@ -99,6 +98,15 @@ class Activity extends Backend
         }
         $this->view->assign("row", $row);
         return $this->view->fetch();
+    }
+
+    public function setprize($ids = NULL)
+    {
+//        if ($this->request->isPost()) {
+//            $this->token();
+//            $params = $this->request->post("row/a");
+//        }
+        return $this->fetch();
     }
 
 }

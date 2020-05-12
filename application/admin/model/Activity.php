@@ -7,11 +7,6 @@ use think\Model;
 
 class Activity extends Model
 {
-
-    
-
-    
-
     // 表名
     protected $name = 'activity';
     
@@ -27,14 +22,16 @@ class Activity extends Model
     protected $append = [
 
     ];
-    
 
-    
+    # 模型关联 start
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'id', 'admin_id', [], 'LEFT')->setEagerlyType(0);
+    }
 
-
-
-
-
-
-
+    public function festival()
+    {
+        return $this->belongsTo(Festival::class, 'id', 'festival_id', [], 'LEFT')->setEagerlyType(0);
+    }
+    # 模型关联 end
 }

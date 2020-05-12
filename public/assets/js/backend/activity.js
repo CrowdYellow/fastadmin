@@ -28,7 +28,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'admin_id', title: __('Admin_id')},
                         {field: 'festival_id', title: __('Festival_id')},
                         {field: 'title', title: __('Title')},
-                        {field: 'is_set_blade', title: __('Is_set_blade') ,formatter:function(value,row){
+                        {field: 'is_set_blade', title: __('Is_set_blade'), formatter:function(value,row){
                                 if (row.is_set_blade === 1)
                                 {
                                     return '<span style="color:green">已完成</span>';
@@ -39,7 +39,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 }
                             }
                         },
-                        {field: 'is_set_prize', title: __('Is_set_prize') ,formatter:function(value,row){
+                        {field: 'is_set_prize', title: __('Is_set_prize'), formatter:function(value,row){
                                 if (row.is_set_prize === 1)
                                 {
                                     return '<span style="color:green">已完成</span>';
@@ -52,9 +52,33 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         },
                         {field: 'start_at', title: __('Start_at')},
                         {field: 'end_at', title: __('End_at')},
-                        {field: 'status', title: __('Status'), searchList: {"1": __('Yes'), "0": __('No')}, formatter: Table.api.formatter.toggle},
+                        {field: 'status', title: __('Status'), formatter:function(value,row){
+                                if (row.status === 1)
+                                {
+                                    return '<span style="color:green">开启中</span>';
+                                } else {
+                                    return '<span style="color:red">已关闭</span>';
+                                }
+                            }
+                        },
                         {field: 'createtime', title: __('创建时间')},
-                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
+                        {
+                            field: 'operate',
+                            title: __('Operate'),
+                            table: table,
+                            events: Table.api.events.operate,
+                            formatter: function(value, row, index) {
+                                var that = $.extend({}, this);
+                                var table = $(that.table).clone(true);
+                                //判断什么时候显示什么时候不显示
+                                if (row.admin_id !== Config.admin.id) {
+                                    $(table).data("operate-del", null);
+                                    $(table).data("operate-edit", null);
+                                }
+                                that.table = table;
+                                return Table.api.formatter.operate.call(that, value, row, index);
+                            }
+                        }
                     ]
                 ]
             });
